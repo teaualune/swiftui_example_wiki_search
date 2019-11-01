@@ -70,21 +70,25 @@ class SearchViewModel: ObservableObject {
             .debounce(for: 1, scheduler: RunLoop.main)
             .removeDuplicates()
             .filter { $0.count > 0 }
-            .map { $0.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) }
-            .filter { $0 != nil }
-            .map { $0! }
+            .compactMap { $0.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) }
+//            .filter { $0 != nil }
+//            .map { $0! }
             .setFailureType(to: URLError.self)
             .flatMap { searchText -> URLSession.DataTaskPublisher in
                 return URLSession.DataTaskPublisher(request: URLRequest(url: URL(string: "https://en.wikipedia.org/w/api.php?action=opensearch&search=\(searchText)&limit=\(self.limit)&namespace=0&format=json")!), session: .shared)
             }
+            .compactMap { self.parseSearchResult(data: $0.data) }
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { (completion) in
+            .sink(receiveCompletion: { completion in
                 print(completion)
-            }) { (data: Data, response: URLResponse) in
-                if let result = self.parseSearchResult(data: data) {
-                    self.searchResult = result
-                }
+            }) { result in
+                self.searchResult = result
             }
+//            }) { (data: Data, response: URLResponse) in
+//                if let result = self.parseSearchResult(data: data) {
+//                    self.searchResult = result
+//                }
+//            }
             .store(in: &cancellable)
     }
 
