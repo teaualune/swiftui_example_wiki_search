@@ -65,30 +65,34 @@ class SearchViewModel: ObservableObject {
     private var cancellable = Set<AnyCancellable>()
 
     init() {
-        $searchText
+        let searchTextStream = $searchText
             .dropFirst(1)
             .debounce(for: 1, scheduler: RunLoop.main)
             .removeDuplicates()
+
+        searchTextStream.sink { text in
+            if text.count == 0 {
+                self.searchResult = []
+            }
+        }.store(in: &cancellable)
+
+        searchTextStream
             .filter { $0.count > 0 }
             .compactMap { $0.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) }
-//            .filter { $0 != nil }
-//            .map { $0! }
-            .setFailureType(to: URLError.self)
-            .flatMap { searchText -> URLSession.DataTaskPublisher in
-                return URLSession.DataTaskPublisher(request: URLRequest(url: URL(string: "https://en.wikipedia.org/w/api.php?action=opensearch&search=\(searchText)&limit=\(self.limit)&namespace=0&format=json")!), session: .shared)
+            .flatMap { searchText in
+                URLSession.DataTaskPublisher(request: URLRequest(url: URL(string: "https://en.wikipedia.org/w/api.php?action=opensearch&search=\(searchText)&limit=\(self.limit)&namespace=0&format=json")!), session: .shared)
+                    .map { $0.data }
+                    .catch { err -> Just<Data?> in
+                        print(err)
+                        return Just(nil)
+                    }
+                    .compactMap { $0 }
             }
-            .compactMap { self.parseSearchResult(data: $0.data) }
+            .compactMap { self.parseSearchResult(data: $0) }
             .receive(on: RunLoop.main)
-            .sink(receiveCompletion: { completion in
-                print(completion)
-            }) { result in
+            .sink { result in
                 self.searchResult = result
             }
-//            }) { (data: Data, response: URLResponse) in
-//                if let result = self.parseSearchResult(data: data) {
-//                    self.searchResult = result
-//                }
-//            }
             .store(in: &cancellable)
     }
 
