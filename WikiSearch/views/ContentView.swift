@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject var model = SearchViewModel()
+    @ObservedObject var model: SearchViewModel
 
     var body: some View {
         NavigationView {
@@ -21,6 +21,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(model: SearchViewModel(searchRepository: SearchRepository()))
     }
 }

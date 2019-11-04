@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E64FB4DC23704FFC00EB54D9 /* SearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64FB4DB23704FFC00EB54D9 /* SearchRepository.swift */; };
+		E64FB4DE2370585100EB54D9 /* SearchResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64FB4DD2370585100EB54D9 /* SearchResultItem.swift */; };
 		E691C8522355F008007A7E9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E691C8512355F008007A7E9D /* AppDelegate.swift */; };
 		E691C8542355F008007A7E9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E691C8532355F008007A7E9D /* SceneDelegate.swift */; };
 		E691C8562355F008007A7E9D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E691C8552355F008007A7E9D /* ContentView.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E64FB4DB23704FFC00EB54D9 /* SearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepository.swift; sourceTree = "<group>"; };
+		E64FB4DD2370585100EB54D9 /* SearchResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultItem.swift; sourceTree = "<group>"; };
 		E691C84E2355F008007A7E9D /* WikiSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E691C8512355F008007A7E9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E691C8532355F008007A7E9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				E691C8512355F008007A7E9D /* AppDelegate.swift */,
 				E691C8532355F008007A7E9D /* SceneDelegate.swift */,
 				E691C8652355FB82007A7E9D /* SearchViewModel.swift */,
+				E64FB4DB23704FFC00EB54D9 /* SearchRepository.swift */,
+				E64FB4DD2370585100EB54D9 /* SearchResultItem.swift */,
 				E691C8572355F00A007A7E9D /* Assets.xcassets */,
 				E691C85C2355F00A007A7E9D /* LaunchScreen.storyboard */,
 				E691C85F2355F00A007A7E9D /* Info.plist */,
@@ -167,6 +173,8 @@
 				E691C86A235613DB007A7E9D /* SearchResultDetail.swift in Sources */,
 				E691C8522355F008007A7E9D /* AppDelegate.swift in Sources */,
 				E691C8542355F008007A7E9D /* SceneDelegate.swift in Sources */,
+				E64FB4DC23704FFC00EB54D9 /* SearchRepository.swift in Sources */,
+				E64FB4DE2370585100EB54D9 /* SearchResultItem.swift in Sources */,
 				E691C8662355FB82007A7E9D /* SearchViewModel.swift in Sources */,
 				E691C8562355F008007A7E9D /* ContentView.swift in Sources */,
 			);

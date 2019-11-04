@@ -31,7 +31,7 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        let model = SearchViewModel()
+        let model = SearchViewModel(searchRepository: SearchRepository())
         model.searchResult.append(SearchResultItem(name: "Kaguya-sama: Love Is War", description: "Kaguya-sama: Love Is War (Japanese: かぐや様は告らせたい ～天才たちの恋愛頭脳戦～, Hepburn: Kaguya-sama wa Kokurasetai - Tensai-tachi no Ren'ai Zunōsen, transl.", url: "https://en.wikipedia.org/wiki/Kaguya-sama:_Love_Is_War"))
         return SearchView(model: model)
     }
