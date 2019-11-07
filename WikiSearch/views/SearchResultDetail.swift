@@ -17,7 +17,9 @@ struct SearchResultDetail: View {
             Text(searchResult.name)
             Text(searchResult.description)
             Text(searchResult.url)
-        }.padding().navigationBarTitle(Text(searchResult.name))
+        }
+        .padding([.horizontal])
+        .navigationBarTitle(Text(searchResult.name))
     }
 }
 

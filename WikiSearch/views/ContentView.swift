@@ -11,13 +11,11 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @ObservedObject var model: SearchViewModel
-
     private var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
 
     var body: some View {
         let nav = NavigationView {
-            SearchView(model: model).navigationBarTitle(Text("Wiki Search"))
+            SearchView().navigationBarTitle(Text("Wiki Search"))
         }
         .padding()
         if idiom == .pad {
@@ -29,6 +27,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(model: SearchViewModel(searchRepository: SearchRepository()))
+        ContentView().environmentObject(SearchViewModel(searchRepository: SearchRepository()))
     }
 }
