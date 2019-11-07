@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let searchViewModel = SearchViewModel(searchRepository: self.searchRepository)
         let contentView = ContentView(model: searchViewModel)
+//        let contentView = SearchView(model: searchViewModel)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
